@@ -1,9 +1,13 @@
 /audio
-/vec
+/vec    
+/vec1
+/vec_backup
 DS_Store
 embeddings.csv
 ./DS_Store
 .DS_Store
+/local
+
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore

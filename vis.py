@@ -63,6 +63,9 @@ for root, dirs, files in os.walk(source_folder):
 
 embeddings_df = pd.DataFrame(embeddings_list)
 
+# embeddings_df.to_csv(csv_output_file, index=False)
+# print(f"Embeddings saved to {csv_output_file}") 
+
 # Cal t-SNE 
 tsne = TSNE(n_components=2, random_state=42)
 embeddings_2d = tsne.fit_transform(np.vstack(embeddings_df['embedding']))

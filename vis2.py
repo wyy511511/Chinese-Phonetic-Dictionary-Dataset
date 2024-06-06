@@ -13,12 +13,24 @@ html_output_file = "vis2.html"
 embeddings_df = pd.read_csv(csv_output_file)
 
 # 计算 t-SNE 降维（如果没有保存 t-SNE 结果，则取消注释以下代码进行计算）
-tsne = TSNE(n_components=2, random_state=42)
-embeddings_2d = tsne.fit_transform(np.vstack(embeddings_df['embedding'].apply(eval).tolist()))
-embeddings_df['x'] = embeddings_2d[:, 0]
-embeddings_df['y'] = embeddings_2d[:, 1]
-embeddings_df = pd.read_csv(csv_output_file)
+# tsne = TSNE(n_components=2, random_state=42)
+# embeddings_list = embeddings_df['embedding'].apply(eval).tolist()
+# embeddings_array = np.vstack(embeddings_list)
 
+# # Perform t-SNE transformation
+# embeddings_2d = tsne.fit_transform(embeddings_array)
+
+# # Check the shape of embeddings_2d and embeddings_df
+# print("Shape of embeddings_2d:", embeddings_2d.shape)
+print("Length of embeddings_df:", len(embeddings_df))
+
+# Ensure the lengths match
+if len(embeddings_2d) == len(embeddings_df):
+    embeddings_df['x'] = embeddings_2d[:, 0]
+    embeddings_df['y'] = embeddings_2d[:, 1]
+    print("t-SNE dimensions successfully added to the DataFrame.")
+else:
+    print("Mismatch in lengths. Check the data and try again.")
 # 使用 Plotly 生成 HTML 可视化
 fig = px.scatter(
     embeddings_df, x='x', y='y', 
